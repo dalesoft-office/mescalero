@@ -1,3 +1,5 @@
+![]https://www.dalesoft.ru/images/projects/mescalero.jpg
+
 # Mescalero
 
 The repository contains the Mescalero library and everything you need to use it
