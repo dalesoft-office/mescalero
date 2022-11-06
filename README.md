@@ -1,4 +1,4 @@
-![]http://www.dalesoft.ru/images/projects/mescalero.jpg
+![](http://www.dalesoft.ru/images/projects/mescalero.jpg)
 
 # Mescalero
 
