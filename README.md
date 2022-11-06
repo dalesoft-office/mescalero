@@ -1,5 +1,3 @@
-![](http://www.dalesoft.ru/images/projects/mescalero.jpg)
-
 # Mescalero
 
 The repository contains the Mescalero library and everything you need to use it
@@ -14,7 +12,7 @@ Mescalero is a free library for small graphics projects that simplifies working 
 
 ## Why is it named like that?
 
-Mescalero is a main subdivision of the Apache Native American nation.
+![](http://www.dalesoft.ru/images/projects/mescalero.jpg) Mescalero is a main subdivision of the Apache Native American nation.
 
 ## What about the License?
 
