@@ -15,7 +15,7 @@ win32-msvc:{
 }
 
 linux-g++:{
-  ICCLibPath = libraries/lcms/linux
+# ICCLibPath = libraries/lcms/linux
   RAWLibPath = libraries/libraw/linux
   LIBS += -lraw
 }
