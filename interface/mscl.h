@@ -47,10 +47,10 @@
 #  endif
 #endif
 
-// Version 0.4.0
-#define MESCALERO_VER_STR "0.4.0"
+// Version 0.6.0
+#define MESCALERO_VER_STR "0.6.0"
 #define MESCALERO_VER_MAJOR 0
-#define MESCALERO_VER_MINOR 4
+#define MESCALERO_VER_MINOR 6
 #define MESCALERO_VER_PATCH 0
 
 //[----------------------------------------------------------------------------]

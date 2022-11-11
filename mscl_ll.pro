@@ -8,14 +8,19 @@ CONFIG += c++17
 win32-msvc:{
   ICCLibPath = libraries/lcms/win
   RAWLibPath = libraries/libraw/win
+  LIBS += -llibraw
+  
+  #Static LibRaw defines
+  DEFINES += LIBRAW_WIN32_DLLDEFS LIBRAW_NODLL
 }
 
 linux-g++:{
   ICCLibPath = libraries/lcms/linux
   RAWLibPath = libraries/libraw/linux
+  LIBS += -lraw
 }
 
-LIBS += -llcms2 -llibraw
+LIBS += -llcms2
 
 INCLUDEPATH += \
     libraries\lcms \
