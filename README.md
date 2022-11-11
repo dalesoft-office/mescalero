@@ -22,5 +22,5 @@ http://www.apache.org/licenses/LICENSE-2.0<br>
 
 ## Project files
 
-mscl_lld.pro - QT 5 project (LittleCMS as ICC, LibRAW as RAW). lcms2.dll and libraw.dll are required<br>
-mscl_lls.pro - QT 5 project (LittleCMS as ICC, LibRAW as RAW). No additional dlls are required
+mscl_ll.pro - QT 5 project (LittleCMS as ICC, LibRAW+RawSpeed as RAW). No additional dlls are required
+mscl_li.pro - QT 5 project (LittleCMS as ICC, ImageMagick as RAW). No additional dlls are required

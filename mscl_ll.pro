@@ -24,7 +24,9 @@ INCLUDEPATH += \
 QMAKE_LIBDIR += $$ICCLibPath $$RAWLibPath
 
 SOURCES += \
-    sources/mscl_ll.cpp
+    sources/mscl_ll.cpp  \
+    sources/mscl_icc_littlecms.cpp \
+    sources/mscl_raw_libraw.cpp 
 
 HEADERS += \
     libraries/lcms/lcms2.h \
