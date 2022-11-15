@@ -47,10 +47,10 @@
 #  endif
 #endif
 
-// Version 0.6.0
-#define MESCALERO_VER_STR "0.6.0"
+// Interface version 0.7.0
+#define MESCALERO_VER_STR "0.7.0"
 #define MESCALERO_VER_MAJOR 0
-#define MESCALERO_VER_MINOR 6
+#define MESCALERO_VER_MINOR 7
 #define MESCALERO_VER_PATCH 0
 
 //[----------------------------------------------------------------------------]
@@ -72,12 +72,11 @@ typedef enum {
 struct msclPart
 {
   msclPartType  type;      // msclPartTypeAbsent if no such a part
-  int           isDynamic; // 0 if static linkage, dynamic otherwise
   int           majorVer;
   int           minorVer;
   int           patchVer;
   const char*   version;
-  const char*   name;
+  const char*   name;      // It's a case sensitive code of the library
   const char*   license;   // Just a name of it
   const char*   url;       // License url
 };
@@ -122,6 +121,8 @@ class MSCLAPI mrawClass
                          ~mrawClass();
 
      static const char**  getFormats();
+     static const bool    isThumbnailSupported();
+     static const bool    isExtendedParamsSupported();
 
      const mrawImageData& getImageData() {return const_cast<const mrawImageData&>(m_data);}
      void                 resetImageData(mrawOParams& params);
