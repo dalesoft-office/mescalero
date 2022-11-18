@@ -60,8 +60,8 @@ const char** mrawClass::getFormats()
 //[ Possible options
 //[----------------------------------------------------------------------------]
 
-bool isThumbnailSupported() {return true;}
-bool isExtendedParamsSupported() {return true;}
+bool mrawClass::isThumbnailSupported() {return true;}
+bool mrawClass::isExtendedParamsSupported() {return true;}
 
 //[----------------------------------------------------------------------------]
 //[
