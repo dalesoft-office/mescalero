@@ -47,10 +47,10 @@
 #  endif
 #endif
 
-// Interface version 0.7.0
-#define MESCALERO_VER_STR "0.7.0"
+// Interface version 0.8.0
+#define MESCALERO_VER_STR "0.8.0"
 #define MESCALERO_VER_MAJOR 0
-#define MESCALERO_VER_MINOR 7
+#define MESCALERO_VER_MINOR 8
 #define MESCALERO_VER_PATCH 0
 
 //[----------------------------------------------------------------------------]
@@ -121,8 +121,8 @@ class MSCLAPI mrawClass
                          ~mrawClass();
 
      static const char**  getFormats();
-     static const bool    isThumbnailSupported();
-     static const bool    isExtendedParamsSupported();
+     static bool          isThumbnailSupported();
+     static bool          isExtendedParamsSupported();
 
      const mrawImageData& getImageData() {return const_cast<const mrawImageData&>(m_data);}
      void                 resetImageData(mrawOParams& params);

@@ -1,6 +1,7 @@
 *qmake.stash
 *.pro.user
 Makefile*
+*.rc
 debug
 Debug
 release
