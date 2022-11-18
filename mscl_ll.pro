@@ -4,7 +4,6 @@ TEMPLATE = lib
 TARGET = mscl
 DEFINES += MESCALERO_LIBRARY
 CONFIG += c++17
-VERSION = 0.8.0
 
 win32-msvc:{
   ICCLibPath = $$PWD/libraries/lcms/win
@@ -19,6 +18,8 @@ linux-g++:{
   ICCLibPath = $$PWD/libraries/lcms/linux
   RAWLibPath = $$PWD/libraries/libraw/linux
   LIBS += -lraw
+
+  VERSION = 0.8.0
 }
 
 LIBS += -llcms2

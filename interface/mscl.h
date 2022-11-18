@@ -47,10 +47,10 @@
 #  endif
 #endif
 
-// Interface version 0.7.0
-#define MESCALERO_VER_STR "0.7.0"
+// Interface version 0.8.0
+#define MESCALERO_VER_STR "0.8.0"
 #define MESCALERO_VER_MAJOR 0
-#define MESCALERO_VER_MINOR 7
+#define MESCALERO_VER_MINOR 8
 #define MESCALERO_VER_PATCH 0
 
 //[----------------------------------------------------------------------------]
