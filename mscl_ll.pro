@@ -19,7 +19,7 @@ linux-g++:{
   RAWLibPath = $$PWD/libraries/libraw/linux
   LIBS += -lraw
 
-  VERSION = 0.8.0
+  VERSION = 0.9.0
 }
 
 LIBS += -llcms2
@@ -44,10 +44,10 @@ HEADERS += \
     $$PWD/libraries/libraw/libraw_internal.h \
     $$PWD/libraries/libraw/libraw_types.h \
     $$PWD/libraries/libraw/libraw_version.h \
-    $$PWD/interface/lcms2_defines.h \
-    $$PWD/interface/lcms2.h \
-    $$PWD/interface/libraw_defines.h \
-    $$PWD/interface/libraw.h \
+    $$PWD/proxies/lcms2_defines.h \
+    $$PWD/proxies/lcms2.h \
+    $$PWD/proxies/libraw_defines.h \
+    $$PWD/proxies/libraw.h \
     $$PWD/interface/mscl_defines.h \
     $$PWD/interface/mscl.h
 
