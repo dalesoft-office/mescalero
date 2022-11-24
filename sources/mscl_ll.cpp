@@ -50,7 +50,7 @@ static msclPart msclParts[] = {
 
 //[----------------------------------------------------------------------------]
 //[
-//[  Method:     msclGetVersion
+//[  Method:     msclClass::msclGetVersion
 //[
 //[  Purpose:    Returns Mescalero version
 //[  Parameters: msclPartType pType := Part code
@@ -58,7 +58,7 @@ static msclPart msclParts[] = {
 //[
 //[----------------------------------------------------------------------------]
 
-MSCLAPI msclPart* msclGetVersion(msclPartType pType)
+msclPart* msclClass::msclGetVersion(msclPartType pType)
 {
  if((pType < 0) || (pType >= msclPartTypeCount))
    return nullptr;

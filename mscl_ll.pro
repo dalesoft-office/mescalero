@@ -12,6 +12,10 @@ win32-msvc:{
   
   #Static LibRaw defines
   DEFINES += LIBRAW_WIN32_DLLDEFS LIBRAW_NODLL
+
+  #To avoid warning LNK4098 that LIBCMT conflicts
+  #See more at https://learn.microsoft.com/en-us/cpp/error-messages/tool-errors/linker-tools-warning-lnk4098
+  QMAKE_LFLAGS += /NODEFAULTLIB:libcmt.lib /NODEFAULTLIB:libcmtd.lib /NODEFAULTLIB:msvcrtd.lib
 }
 
 linux-g++:{
@@ -19,7 +23,7 @@ linux-g++:{
   RAWLibPath = $$PWD/libraries/libraw/linux
   LIBS += -lraw
 
-  VERSION = 0.9.0
+  VERSION = 0.10.0
 }
 
 LIBS += -llcms2
