@@ -39,9 +39,6 @@ using cmsHANDLE       = miccHANDLE;
 
 using cmsColorSpaceSignature = miccColorSpaceSignature;
 
-using cmsInfoType = miccInfoType;
-#define cmsInfoDescription miccInfoDescription
-
 #define INTENT_PERCEPTUAL 0
 #define cmsNoLanguage "\0\0"
 #define cmsNoCountry  "\0\0"
@@ -53,7 +50,7 @@ using cmsInfoType = miccInfoType;
 
 // Localized info
 
-#define cmsGetProfileInfoASCII miccClass::getProfileInfoASCII
+#define cmsGetProfileInfoASCII(p1,p2,p3,p4,p5,p6) miccClass::getProfileInfo(p1,p5,p6)
 
 // Profile
 

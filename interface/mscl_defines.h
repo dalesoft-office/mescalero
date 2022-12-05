@@ -42,6 +42,17 @@ using msclUShort    = unsigned short;
 using msclUChar     = unsigned char;
 using msclSChar     = signed char;
 
+// 16-bit base types, "Number" suffix means platform independent size
+#if (USHRT_MAX == 65535U)
+ using msclUInt16Number = unsigned short;
+ using msclInt16Number  = short;
+#elif (UINT_MAX == 65535U)
+ using msclUInt16Number = unsigned int;
+ using msclUInt16Number = int;
+#else
+#error "Unable to find 16 bits types, unsupported compiler"
+#endif
+
 // 32-bit base types, "Number" suffix means platform independent size
 #if (UINT_MAX == 4294967295U)
  using msclInt32Number  = int;
@@ -73,6 +84,8 @@ using miccHTRANSFORM = void*;
 using miccHANDLE = void*;
 
 typedef enum {
+ miccSigUnknown      = 0x00000000,  // 'Unknown'
+    
  miccSigXYZData      = 0x58595A20,  // 'XYZ '
  miccSigLabData      = 0x4C616220,  // 'Lab '
  miccSigLuvData      = 0x4C757620,  // 'Luv '
@@ -118,15 +131,6 @@ typedef enum {
  miccSigLuvKData     = 0x4C75764B   // 'LuvK'
 
 } miccColorSpaceSignature;
-
-typedef enum
-{
- miccInfoDescription  = 0,
- miccInfoManufacturer = 1,
- miccInfoModel        = 2,
- miccInfoCopyright    = 3
-
-} miccInfoType;
 
 //[----------------------------------------------------------------------------]
 //[ RAW part

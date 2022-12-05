@@ -48,10 +48,10 @@
 #  endif
 #endif
 
-// Interface version 0.10.0
-#define MESCALERO_VER_STR "0.10.0"
+// Interface version 0.11.0
+#define MESCALERO_VER_STR "0.11.0"
 #define MESCALERO_VER_MAJOR 0
-#define MESCALERO_VER_MINOR 10
+#define MESCALERO_VER_MINOR 11
 #define MESCALERO_VER_PATCH 0
 
 //[----------------------------------------------------------------------------]
@@ -102,9 +102,7 @@ class MSCLAPI miccClass
  public:
 
     static miccColorSpaceSignature getColorSpace(miccHPROFILE hProfile);
-    static msclUInt32Number getProfileInfoASCII(miccHPROFILE hProfile, miccInfoType Info,
-                                                 const char LanguageCode[3], const char CountryCode[3],
-                                                 char* Buffer, msclUInt32Number BufferSize);
+    static msclUInt32Number getProfileInfo(miccHPROFILE hProfile, char* Buffer, msclUInt32Number BufferSize);
     static miccHPROFILE openProfileFromMem(const void* MemPtr, msclUInt32Number dwSize);
     static miccBool closeProfile(miccHPROFILE hProfile);
     static miccBool saveProfileToMem(miccHPROFILE hProfile, void* MemPtr, msclUInt32Number* BytesNeeded);

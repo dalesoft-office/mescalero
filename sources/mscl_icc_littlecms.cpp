@@ -39,12 +39,13 @@ miccColorSpaceSignature miccClass::getColorSpace(miccHPROFILE hProfile)
 }
 
 //[----------------------------------------------------------------------------]
+//[ if Buffer is NULL, returns the size of the buffer
+//[----------------------------------------------------------------------------]
 
-msclUInt32Number miccClass::getProfileInfoASCII(miccHPROFILE hProfile, miccInfoType Info,
-                                                const char LanguageCode[3], const char CountryCode[3],
-                                                char* Buffer, msclUInt32Number BufferSize)
+msclUInt32Number miccClass::getProfileInfo(miccHPROFILE hProfile, char* Buffer, msclUInt32Number BufferSize)
 {
- return cmsGetProfileInfoASCII(hProfile, (cmsInfoType) Info, LanguageCode, CountryCode, Buffer, BufferSize);
+ // cmsNoLanguage == cmsNoCountry == "\0\0"
+ return cmsGetProfileInfoASCII(hProfile, cmsInfoDescription, "\0\0", "\0\0", Buffer, BufferSize);
 }
 
 //[----------------------------------------------------------------------------]
