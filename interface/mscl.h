@@ -132,9 +132,11 @@ class MSCLAPI mrawClass
                           mrawClass();
                          ~mrawClass();
 
+     // RAW files options
      static const char**  getFormats();
      static bool          isThumbnailSupported();
      static bool          isExtendedParamsSupported();
+     static bool          isProgressHandlerSupported();
 
      const mrawImageData& getImageData() {return const_cast<const mrawImageData&>(m_data);}
      void                 resetImageData(mrawOParams& params);

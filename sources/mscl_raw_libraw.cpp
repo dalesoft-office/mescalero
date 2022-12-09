@@ -57,11 +57,12 @@ const char** mrawClass::getFormats()
 }
 
 //[----------------------------------------------------------------------------]
-//[ Possible options
+//[ Possible RAW options
 //[----------------------------------------------------------------------------]
 
 bool mrawClass::isThumbnailSupported() {return true;}
 bool mrawClass::isExtendedParamsSupported() {return true;}
+bool mrawClass::isProgressHandlerSupported() {return true;}
 
 //[----------------------------------------------------------------------------]
 //[

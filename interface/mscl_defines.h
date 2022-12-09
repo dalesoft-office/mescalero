@@ -42,6 +42,11 @@ using msclUShort    = unsigned short;
 using msclUChar     = unsigned char;
 using msclSChar     = signed char;
 
+// 8-bit base types, "Number" suffix means platform independent size
+
+using msclUInt8Number = msclUChar;
+using msclInt8Number  = msclSChar;
+
 // 16-bit base types, "Number" suffix means platform independent size
 #if (USHRT_MAX == 65535U)
  using msclUInt16Number = unsigned short;
