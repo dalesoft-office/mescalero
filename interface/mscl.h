@@ -22,6 +22,7 @@
 //[
 //[ 13.10.22 /IB/ Created...
 //[ 24.11.22 /IB/ Methods were grouped into classes
+//[ 10.12.22 /IB/ New methods were added, format of some old ones changed
 //[
 //[----------------------------------------------------------------------------]
 
@@ -29,6 +30,9 @@
 #define MESCALERO_H
 
 #include <QtCore/qglobal.h>
+#include <string>
+
+#include <mscl_defines.h>
 
 #ifdef __BORLANDC__
 #error "Unsupported compiler (Borland)"
@@ -102,15 +106,16 @@ class MSCLAPI miccClass
  public:
 
     static miccColorSpaceSignature getColorSpace(miccHPROFILE hProfile);
-    static msclUInt32Number getProfileInfo(miccHPROFILE hProfile, char* Buffer, msclUInt32Number BufferSize);
-    static miccHPROFILE openProfileFromMem(const void* MemPtr, msclUInt32Number dwSize);
-    static miccBool closeProfile(miccHPROFILE hProfile);
-    static miccBool saveProfileToMem(miccHPROFILE hProfile, void* MemPtr, msclUInt32Number* BytesNeeded);
-    static miccHTRANSFORM createTransform(miccHPROFILE Input, msclUInt32Number InputFormat,
-                                           miccHPROFILE Output, msclUInt32Number OutputFormat,
-                                           msclUInt32Number Intent, msclUInt32Number dwFlags);
-    static void deleteTransform(miccHTRANSFORM hTransform);
-    static void doTransform(miccHTRANSFORM Transform, const void* InputBuffer, void* OutputBuffer, msclUInt32Number Size);
+    static msclUInt32Number        getProfileInfo(miccHPROFILE hProfile, char* Buffer, msclUInt32Number BufferSize);
+    static miccHPROFILE            openProfileFromMem(const void* MemPtr, msclUInt32Number dwSize);
+    static miccBool                closeProfile(miccHPROFILE hProfile);
+    static miccBool                saveProfileToMem(miccHPROFILE hProfile, void* MemPtr, msclUInt32Number* BytesNeeded);
+    static miccHTRANSFORM          createTransform(miccHPROFILE Input, msclUInt32Number InputFormat,
+                                                   miccHPROFILE Output, msclUInt32Number OutputFormat,
+                                                   msclUInt32Number Intent, msclUInt32Number dwFlags);
+    static void                    deleteTransform(miccHTRANSFORM hTransform);
+    static void                    doTransform(miccHTRANSFORM Transform, const void* InputBuffer,
+                                               void* OutputBuffer, msclUInt32Number Size);
 };
 
 //[----------------------------------------------------------------------------]
@@ -125,7 +130,9 @@ class MSCLAPI mrawClass
 
      void*                m_processor;
      mrawImageData        m_data;
+     std::string          m_filename;
 
+     void                 resetProcessorData();
      void                 getProcessorData();
 
   public:
@@ -139,14 +146,12 @@ class MSCLAPI mrawClass
      static bool          isProgressHandlerSupported();
 
      const mrawImageData& getImageData() {return const_cast<const mrawImageData&>(m_data);}
+     const std::string&   getFileName() {return const_cast<const std::string&>(m_filename);}
+
      void                 resetImageData(mrawOParams& params);
      void                 setupImageData(mrawOParams& params);
 
-#if defined(Q_OS_WIN) || defined(_WIN32) || defined(WIN32)
-     mrawErrors open_file(const wchar_t* fname, msclInt64Number max_buff_size = mrawDataStreamMaxSize);
-#else
-     mrawErrors open_file(const char* fname, msclInt64Number max_buff_size = mrawDataStreamMaxSize);
-#endif
+     mrawErrors           open_file(std::string fname, msclInt64Number max_buff_size = mrawDataStreamMaxSize);
 
      mrawErrors           dcrawProcess();
      mrawErrors           dcrawMakeMemImage(mrawProcessedImage& processedImage);
@@ -159,5 +164,7 @@ class MSCLAPI mrawClass
      void                 setProgressHandler(mrawProgressCallback pcb, void* data);
 
 };
+
+//[----------------------------------------------------------------------------]
 
 #endif // MESCALERO_H

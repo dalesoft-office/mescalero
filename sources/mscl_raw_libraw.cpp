@@ -21,14 +21,12 @@
 //[ History:
 //[
 //[ 06.11.22 /IB/ Created...
+//[ 10.12.22 /IB/ New methods were added, format of some old ones changed
 //[
 //[----------------------------------------------------------------------------]
 
-
-#include "interface/mscl_defines.h"
-#include "interface/mscl.h"
-
-#include "libraries/libraw/libraw.h"
+#include <mscl.h>
+#include <libraries/libraw/libraw.h>
 
 //[----------------------------------------------------------------------------]
 //[ RAW methods
@@ -76,7 +74,7 @@ bool mrawClass::isProgressHandlerSupported() {return true;}
 
 mrawClass::mrawClass()
 {
- // Checking arrays formats
+ // Checking arrays formats against LibRaw
 
  // resetImageData, setupImageData
 
@@ -98,6 +96,7 @@ mrawClass::mrawClass()
  // Create processor
 
  m_processor = new LibRaw;
+ m_filename  = "";
  getProcessorData();
 }
 
@@ -172,6 +171,21 @@ void mrawClass::setupImageData(mrawOParams& params)
 
 //[----------------------------------------------------------------------------]
 //[
+//[  Method:     mrawClass::resetProcessorData
+//[
+//[  Purpose:    Resets image data to their defaults
+//[  Parameters: None
+//[  Returns:    Nothing
+//[
+//[----------------------------------------------------------------------------]
+
+void mrawClass::resetProcessorData()
+{
+ // We don't need that, because LibRaw do it inside getProcessorData()
+}
+
+//[----------------------------------------------------------------------------]
+//[
 //[  Method:     mrawClass::getProcessorData
 //[
 //[  Purpose:    Retrieves image data from processor to m_Data
@@ -231,14 +245,26 @@ void mrawClass::getProcessorData()
 
 //[----------------------------------------------------------------------------]
 
+/*
 #if defined(Q_OS_WIN) || defined(_WIN32) || defined(WIN32)
 mrawErrors  mrawClass::open_file(const wchar_t *fname, msclInt64Number max_buff_size)
 #else
 mrawErrors  mrawClass::open_file(const char *fname, msclInt64Number max_buff_size)
 #endif
+*/
+mrawErrors mrawClass::open_file(std::string fname, msclInt64Number max_buff_size)
 {
- mrawErrors result = (mrawErrors)((LibRaw*) m_processor)->open_file(fname, max_buff_size);
+#if defined(Q_OS_WIN) || defined(_WIN32) || defined(WIN32)
+    std::wstring wfname = std::wstring(fname.begin(), fname.end());
+    mrawErrors result = (mrawErrors)((LibRaw*) m_processor)->open_file(wfname.c_str(), max_buff_size);
+#else
+    mrawErrors result = (mrawErrors)((LibRaw*) m_processor)->open_file(fname.c_str(), max_buff_size);
+#endif
+
  getProcessorData();
+
+ m_filename = result == mrawSuccess ? fname : "";
+
  return result;
 }
 
@@ -319,6 +345,7 @@ void mrawClass::recycle()
 {
  ((LibRaw*) m_processor)->recycle();
  getProcessorData();
+ m_filename = "";
 }
 
 //[----------------------------------------------------------------------------]

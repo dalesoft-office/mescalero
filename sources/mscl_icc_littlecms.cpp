@@ -22,12 +22,12 @@
 //[
 //[ 06.11.22 /IB/ Created...
 //[ 24.11.22 /IB/ Methods were grouped into classes
+//[ 10.12.22 /IB/ New methods were added, format of some old ones changed
 //[
 //[----------------------------------------------------------------------------]
 
-#include "interface/mscl_defines.h"
-#include "interface/mscl.h"
-#include "libraries/lcms/lcms2.h"
+#include <mscl.h>
+#include <libraries/lcms/lcms2.h>
 
 //[----------------------------------------------------------------------------]
 //[ ICC methods
