@@ -22,12 +22,12 @@
 //[
 //[ 06.11.22 /IB/ Created...
 //[ 24.11.22 /IB/ Methods were grouped into classes
+//[ 10.12.22 /IB/ New methods were added, format of some old ones changed
 //[
 //[----------------------------------------------------------------------------]
 
-#include "interface/mscl_defines.h"
-#include "interface/mscl.h"
-#include "libraries/lcms/lcms2.h"
+#include <mscl.h>
+#include <libraries/lcms/lcms2.h>
 
 //[----------------------------------------------------------------------------]
 //[ ICC methods
@@ -39,12 +39,13 @@ miccColorSpaceSignature miccClass::getColorSpace(miccHPROFILE hProfile)
 }
 
 //[----------------------------------------------------------------------------]
+//[ if Buffer is NULL, returns the size of the buffer
+//[----------------------------------------------------------------------------]
 
-msclUInt32Number miccClass::getProfileInfoASCII(miccHPROFILE hProfile, miccInfoType Info,
-                                                const char LanguageCode[3], const char CountryCode[3],
-                                                char* Buffer, msclUInt32Number BufferSize)
+msclUInt32Number miccClass::getProfileInfo(miccHPROFILE hProfile, char* Buffer, msclUInt32Number BufferSize)
 {
- return cmsGetProfileInfoASCII(hProfile, (cmsInfoType) Info, LanguageCode, CountryCode, Buffer, BufferSize);
+ // cmsNoLanguage == cmsNoCountry == "\0\0"
+ return cmsGetProfileInfoASCII(hProfile, cmsInfoDescription, "\0\0", "\0\0", Buffer, BufferSize);
 }
 
 //[----------------------------------------------------------------------------]

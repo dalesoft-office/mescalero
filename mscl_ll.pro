@@ -16,6 +16,9 @@ win32-msvc:{
   #To avoid warning LNK4098 that LIBCMT conflicts
   #See more at https://learn.microsoft.com/en-us/cpp/error-messages/tool-errors/linker-tools-warning-lnk4098
   QMAKE_LFLAGS += /NODEFAULTLIB:libcmt.lib /NODEFAULTLIB:libcmtd.lib /NODEFAULTLIB:msvcrtd.lib
+
+  #To avoid warning 4286 that xmlFree is wrong imported
+  QMAKE_LFLAGS += /ignore:4286
 }
 
 linux-g++:{
@@ -23,14 +26,12 @@ linux-g++:{
   RAWLibPath = $$PWD/libraries/libraw/linux
   LIBS += -lraw
 
-  VERSION = 0.10.0
+  VERSION = 0.11.0
 }
 
 LIBS += -llcms2
 
-INCLUDEPATH += \
-    $$PWD/libraries/lcms \
-    $$PWD/libraries/libraw
+INCLUDEPATH += $$PWD/interface
 
 QMAKE_LIBDIR += $$ICCLibPath $$RAWLibPath
 
@@ -55,9 +56,4 @@ HEADERS += \
     $$PWD/interface/mscl_defines.h \
     $$PWD/interface/mscl.h
 
-# Default rules for deployment.
-#unix {
-#    target.path = /usr/lib
-#}
-#!isEmpty(target.path): INSTALLS += target
 

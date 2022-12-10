@@ -25,13 +25,9 @@
 //[
 //[----------------------------------------------------------------------------]
 
-
-#include "interface/mscl_defines.h"
-#include "interface/mscl.h"
-
-#include "libraries/lcms/lcms2.h"
-
-#include "libraries/libraw/libraw.h"
+#include <mscl.h>
+#include <libraries/lcms/lcms2.h>
+#include <libraries/libraw/libraw.h>
 
 //[----------------------------------------------------------------------------]
 //[ Mescalero methods
