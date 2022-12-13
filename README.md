@@ -23,3 +23,7 @@ http://www.apache.org/licenses/LICENSE-2.0<br>
 ## Project files
 
 mscl_ll.pro - QT 5 project (LittleCMS as ICC, LibRAW as RAW). No additional dll/so's are required<br>
+
+## Releases files
+
+mscl011.zip/tar.gz - Mescalero v0.11 compiled binaries (you can get includes by the tag "0.11")

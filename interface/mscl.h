@@ -145,6 +145,7 @@ class MSCLAPI mrawClass
      static bool          isExtendedParamsSupported();
      static bool          isProgressHandlerSupported();
 
+     const void*          getProcessor() {return const_cast<const void*>(m_processor);}
      const mrawImageData& getImageData() {return const_cast<const mrawImageData&>(m_data);}
      const std::string&   getFileName() {return const_cast<const std::string&>(m_filename);}
 
