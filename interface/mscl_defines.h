@@ -141,7 +141,7 @@ typedef enum {
 //[ RAW part
 //[----------------------------------------------------------------------------]
 
-#define mrawDataStreamMaxSize (250 * 1024L * 1024L)
+#define mrawDataStreamMaxSize (300 * 1024L * 1024L)
 
 typedef enum
 {

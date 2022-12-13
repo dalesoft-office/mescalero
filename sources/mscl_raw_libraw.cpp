@@ -49,6 +49,15 @@ static const char* mrawFormats[] = {
  "raw", "rwl", "rw2", "rwz", "sr2", "srf", "srw", "x3f", ""            // 38
 };
 
+/* Not presented:
+
+   .cr3 - Cannon Raw 3 since 2018 based on CIFF format
+          Need to use last version of LibRAW
+          https://www.libraw.org/news/libraw-202101-snapshot
+*/
+
+//[----------------------------------------------------------------------------]
+
 const char** mrawClass::getFormats()
 {
  return mrawFormats;
@@ -96,7 +105,7 @@ mrawClass::mrawClass()
  // Create processor
 
  m_processor = new LibRaw;
- m_filename  = "";
+ m_filename  = MRAW_EMPTYSTR;
  getProcessorData();
 }
 
@@ -245,26 +254,13 @@ void mrawClass::getProcessorData()
 
 //[----------------------------------------------------------------------------]
 
-/*
-#if defined(Q_OS_WIN) || defined(_WIN32) || defined(WIN32)
-mrawErrors  mrawClass::open_file(const wchar_t *fname, msclInt64Number max_buff_size)
-#else
-mrawErrors  mrawClass::open_file(const char *fname, msclInt64Number max_buff_size)
-#endif
-*/
-mrawErrors mrawClass::open_file(std::string fname, msclInt64Number max_buff_size)
+mrawErrors mrawClass::openFile(const MRAW_FNTYPE fname)
 {
-#if defined(Q_OS_WIN) || defined(_WIN32) || defined(WIN32)
-    std::wstring wfname = std::wstring(fname.begin(), fname.end());
-    mrawErrors result = (mrawErrors)((LibRaw*) m_processor)->open_file(wfname.c_str(), max_buff_size);
-#else
-    mrawErrors result = (mrawErrors)((LibRaw*) m_processor)->open_file(fname.c_str(), max_buff_size);
-#endif
+ mrawErrors result = (mrawErrors)((LibRaw*) m_processor)->open_file(fname, mrawDataStreamMaxSize);
 
  getProcessorData();
 
- m_filename = result == mrawSuccess ? fname : "";
-
+ m_filename = result == mrawSuccess ? const_cast<MRAW_FNTYPE>(fname) : MRAW_EMPTYSTR;
  return result;
 }
 
@@ -345,7 +341,7 @@ void mrawClass::recycle()
 {
  ((LibRaw*) m_processor)->recycle();
  getProcessorData();
- m_filename = "";
+ m_filename = MRAW_EMPTYSTR;
 }
 
 //[----------------------------------------------------------------------------]

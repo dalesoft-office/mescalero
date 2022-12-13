@@ -124,13 +124,21 @@ class MSCLAPI miccClass
 
 using mrawProgressCallback = int (*)(void* data, mrawProgress stage, int iteration, int expected);
 
+#if defined(Q_OS_WIN) || defined(_WIN32) || defined(WIN32)
+#define MRAW_FNTYPE    wchar_t*
+#define MRAW_EMPTYSTR  const_cast<MRAW_FNTYPE>(L"")
+#else
+#define MRAW_FNTYPE    char*
+#define MRAW_EMPTYSTR  const_cast<MRAW_FNTYPE>("")
+#endif
+
 class MSCLAPI mrawClass
 {
   private:
 
      void*                m_processor;
      mrawImageData        m_data;
-     std::string          m_filename;
+     MRAW_FNTYPE          m_filename;
 
      void                 resetProcessorData();
      void                 getProcessorData();
@@ -147,12 +155,12 @@ class MSCLAPI mrawClass
 
      const void*          getProcessor() {return const_cast<const void*>(m_processor);}
      const mrawImageData& getImageData() {return const_cast<const mrawImageData&>(m_data);}
-     const std::string&   getFileName() {return const_cast<const std::string&>(m_filename);}
+     const MRAW_FNTYPE    getFileName() {return const_cast<const MRAW_FNTYPE>(m_filename);}
 
      void                 resetImageData(mrawOParams& params);
      void                 setupImageData(mrawOParams& params);
 
-     mrawErrors           open_file(std::string fname, msclInt64Number max_buff_size = mrawDataStreamMaxSize);
+     mrawErrors           openFile(const MRAW_FNTYPE fname);
 
      mrawErrors           dcrawProcess();
      mrawErrors           dcrawMakeMemImage(mrawProcessedImage& processedImage);
