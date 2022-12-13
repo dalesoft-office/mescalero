@@ -125,10 +125,8 @@ using mrawProgressCallback = int (*)(void* data, mrawProgress stage, int iterati
 
 #if defined(Q_OS_WIN) || defined(_WIN32) || defined(WIN32)
 #define MRAW_FNTYPE    wchar_t*
-#define MRAW_EMPTYSTR  const_cast<MRAW_FNTYPE>(L"")
 #else
 #define MRAW_FNTYPE    char*
-#define MRAW_EMPTYSTR  const_cast<MRAW_FNTYPE>("")
 #endif
 
 class MSCLAPI mrawClass

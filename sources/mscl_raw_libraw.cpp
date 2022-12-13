@@ -105,7 +105,7 @@ mrawClass::mrawClass()
  // Create processor
 
  m_processor = new LibRaw;
- m_filename  = MRAW_EMPTYSTR;
+ m_filename  = NULL;
  getProcessorData();
 }
 
@@ -260,7 +260,7 @@ mrawErrors mrawClass::openFile(const MRAW_FNTYPE fname)
 
  getProcessorData();
 
- m_filename = result == mrawSuccess ? const_cast<MRAW_FNTYPE>(fname) : MRAW_EMPTYSTR;
+ m_filename = result == mrawSuccess ? const_cast<MRAW_FNTYPE>(fname) : NULL;
  return result;
 }
 
@@ -341,7 +341,7 @@ void mrawClass::recycle()
 {
  ((LibRaw*) m_processor)->recycle();
  getProcessorData();
- m_filename = MRAW_EMPTYSTR;
+ m_filename = NULL;
 }
 
 //[----------------------------------------------------------------------------]
