@@ -30,7 +30,6 @@
 #define MESCALERO_H
 
 #include <QtCore/qglobal.h>
-#include <string>
 
 #include <mscl_defines.h>
 
