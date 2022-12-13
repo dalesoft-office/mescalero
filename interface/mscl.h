@@ -135,7 +135,6 @@ class MSCLAPI mrawClass
 
      void*                m_processor;
      mrawImageData        m_data;
-     MRAW_FNTYPE          m_filename;
 
      void                 resetProcessorData();
      void                 getProcessorData();
@@ -152,20 +151,19 @@ class MSCLAPI mrawClass
 
      const void*          getProcessor() {return const_cast<const void*>(m_processor);}
      const mrawImageData& getImageData() {return const_cast<const mrawImageData&>(m_data);}
-     const MRAW_FNTYPE    getFileName() {return const_cast<const MRAW_FNTYPE>(m_filename);}
 
      void                 resetImageData(mrawOParams& params);
      void                 setupImageData(mrawOParams& params);
 
      mrawErrors           openFile(const MRAW_FNTYPE fname);
+     mrawErrors           unpack(const MRAW_FNTYPE fname);
+     mrawErrors           unpackThumb();
+     void                 recycle();
 
      mrawErrors           dcrawProcess();
      mrawErrors           dcrawMakeMemImage(mrawProcessedImage& processedImage);
      static void          dcrawClearMem(mrawProcessedImage& processedImage);
 
-     mrawErrors           unpack();
-     mrawErrors           unpackThumb();
-     void                 recycle();
 
      void                 setProgressHandler(mrawProgressCallback pcb, void* data);
 
