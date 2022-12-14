@@ -26,4 +26,4 @@ mscl_ll.pro - QT 5 project (LittleCMS as ICC, LibRAW as RAW). No additional dll/
 
 ## Releases files
 
-mscl011.zip/tar.gz - Mescalero v0.11 compiled binaries (you can get includes by the tag "0.11")
+mscl011.zip/tar.gz - Mescalero v0.11 compiled binaries with includes (w/o proxies)
