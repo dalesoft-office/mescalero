@@ -26,8 +26,13 @@ mscl_ll.pro - QT 5 project (LittleCMS as ICC, LibRAW as RAW). No additional dll/
 
 ## Releases files
 
-mscl011.zip/tar.gz - Mescalero v0.11 compiled binaries with includes (w/o proxies)
+Mescalero v0.11 compiled binaries with includes w/o proxies:
 
-mscl_linux_011.zip - Mescalero v0.11 compiled binaries w/o includes and proxies
+- mscl011.zip - Windows 
+- mscl011.tar.gz - Linuxes
 
-mscl_red_011.zip - Mescalero v0.11 compiled binaries w/o includes and proxies for RED Linux
+Mescalero v0.11 compiled binaries w/o includes and proxies:
+
+- mscl_linux_011.zip - Linuxes
+- mscl_astra_011.zip - Astra Linux (1.7+)
+- mscl_red_011.zip - RED Linux (7.3+)
