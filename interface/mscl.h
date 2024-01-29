@@ -1,6 +1,6 @@
 //[----------------------------------------------------------------------------]
 //[
-//[ Copyright 2022 DaleSoft (email: office@dalesoft.ru)
+//[ Copyright 2022-2024 DaleSoft (email: office@dalesoft.ru)
 //[
 //[ Licensed under the Apache License, Version 2.0 (the "License");
 //[ you may not use this file except in compliance with the License.
@@ -23,6 +23,7 @@
 //[ 13.10.22 /IB/ Created...
 //[ 24.11.22 /IB/ Methods were grouped into classes
 //[ 10.12.22 /IB/ New methods were added, format of some old ones changed
+//[ 18.01.24 /IB/ Trace methods were added
 //[
 //[----------------------------------------------------------------------------]
 
@@ -51,10 +52,10 @@
 #  endif
 #endif
 
-// Interface version 0.11.0
-#define MESCALERO_VER_STR "0.11.0"
+// Interface version 0.20.0
+#define MESCALERO_VER_STR "0.20.0"
 #define MESCALERO_VER_MAJOR 0
-#define MESCALERO_VER_MINOR 11
+#define MESCALERO_VER_MINOR 20
 #define MESCALERO_VER_PATCH 0
 
 //[----------------------------------------------------------------------------]
@@ -68,6 +69,7 @@ typedef enum {
  msclPartTypeMSCL   = 0,
  msclPartTypeICC    = 1,
  msclPartTypeRAW    = 2,
+ msclPartTypeTRACE  = 3,
 
  msclPartTypeCount
 
@@ -167,6 +169,40 @@ class MSCLAPI mrawClass
 
      void                 setProgressHandler(mrawProgressCallback pcb, void* data);
 
+};
+
+//[----------------------------------------------------------------------------]
+//[ TRACE part
+//[----------------------------------------------------------------------------]
+
+#define MTRACE_WORDSIZE          ((int) sizeof(msclULong))
+#define MTRACE_WORDBITS          (8 * MTRACE_WORDSIZE)
+#define MTRACE_HIBIT             (((msclULong)1) << (MTRACE_WORDBITS - 1))
+
+#define mtrace_scanline(bm, y)   ((bm)->map + (y)*(bm)->dy)
+#define mtrace_index(bm, x, y)   (&mtrace_scanline(bm, y)[(x)/MTRACE_WORDBITS])
+#define mtrace_mask(x)           (MTRACE_HIBIT >> ((x) & (MTRACE_WORDBITS-1)))
+#define mtrace_range(x, a)       ((int)(x) >= 0 && (int)(x) < (a))
+#define mtrace_safe(bm, x, y)    (mtrace_range(x, (bm)->w) && mtrace_range(y, (bm)->h))
+
+#define MTRACE_USET(bm, x, y)    (*mtrace_index(bm, x, y) |= mtrace_mask(x))
+#define MTRACE_UCLR(bm, x, y)    (*mtrace_index(bm, x, y) &= ~mtrace_mask(x))
+#define MTRACE_UPUT(bm, x, y, b) ((b) ? MTRACE_USET(bm, x, y) : MTRACE_UCLR(bm, x, y))
+#define MTRACE_PUT(bm, x, y, b)  (mtrace_safe(bm, x, y) ? MTRACE_UPUT(bm, x, y, b) : 0)
+
+
+class MSCLAPI mtraceClass
+{
+ public:
+
+    static mtraceParam*  paramCreate();
+    static void          paramFree(mtraceParam*);
+
+    static mtraceState*  traceCreate(const mtraceParam* param, const mtraceBitmap* bm);
+    static void          traceFree(mtraceState* st);
+
+    static mtraceBitmap* bitmapCreate(int w, int h);
+    static void          bitmapFree(mtraceBitmap*);
 };
 
 //[----------------------------------------------------------------------------]

@@ -1,6 +1,6 @@
 //[----------------------------------------------------------------------------]
 //[
-//[ Copyright 2022 DaleSoft (email: office@dalesoft.ru)
+//[ Copyright 2022-2024 DaleSoft (email: office@dalesoft.ru)
 //[ 
 //[ Licensed under the Apache License, Version 2.0 (the "License");
 //[ you may not use this file except in compliance with the License.
@@ -21,6 +21,7 @@
 //[ History:
 //[
 //[ 15.10.22 /IB/ Created...
+//[ 18.01.24 /IB/ Trace definitions were added, typedefs removed
 //[
 //[----------------------------------------------------------------------------]
 
@@ -37,13 +38,14 @@
 
 using msclULongLong = unsigned long long;
 using msclSLongLong = long long;
+using msclULong     = unsigned long;
+using msclSLong     = long;
 using msclUInt      = unsigned int;
 using msclUShort    = unsigned short;
 using msclUChar     = unsigned char;
 using msclSChar     = signed char;
 
 // 8-bit base types, "Number" suffix means platform independent size
-
 using msclUInt8Number = msclUChar;
 using msclInt8Number  = msclSChar;
 
@@ -88,7 +90,8 @@ using miccHPROFILE = void*;
 using miccHTRANSFORM = void*;
 using miccHANDLE = void*;
 
-typedef enum {
+enum miccColorSpaceSignature
+{
  miccSigUnknown      = 0x00000000,  // 'Unknown'
     
  miccSigXYZData      = 0x58595A20,  // 'XYZ '
@@ -134,8 +137,7 @@ typedef enum {
  miccSig14colorData  = 0x45434C52,  // 'ECLR'
  miccSig15colorData  = 0x46434C52,  // 'FCLR'
  miccSigLuvKData     = 0x4C75764B   // 'LuvK'
-
-} miccColorSpaceSignature;
+};
 
 //[----------------------------------------------------------------------------]
 //[ RAW part
@@ -143,31 +145,28 @@ typedef enum {
 
 #define mrawDataStreamMaxSize (300 * 1024L * 1024L)
 
-typedef enum
+enum mrawProgress
 {
  mrawProgressStart   = 0,
  mrawProgressLoadRow = 1 << 3
+};
 
-} mrawProgress;
-
-typedef enum
+enum mrawErrors
 {
  mrawSuccess                  = 0,
  mrawErrorFileUnsupported     = -2,
  mrawErrorUnsufficientMemory  = -100007,
  mrawErrorIO                  = -100009,
  mrawErrorCancelledByCallback = -100010
+};
 
-} mrawErrors;
-
-typedef enum
+enum mrawImageFormats
 {
   mrawImageFormatJPG = 1,
   mrawImageFormatBMP = 2
+};
 
-} mrawImageFormats;
-
-typedef enum
+enum mrawThumbnailFormats
 {
   mrawThumbnailFormatUnknown = 0,
   mrawThumbnailFormatJpeg    = 1,
@@ -175,12 +174,11 @@ typedef enum
   mrawThumbnailFormatBmp16   = 3,
   mrawThumbnailFormatLayer   = 4,
   mrawThumbnailFormatRollei  = 5
-
-} mrawThumbnailFormats;
+};
 
 //[----------------------------------------------------------------------------]
 
-typedef struct
+struct mrawImageSizes
 {
   msclUShort  raw_height;
   msclUShort  raw_width;
@@ -189,17 +187,15 @@ typedef struct
   msclUShort  iheight;
   msclUShort  iwidth;
   int         flip;
+};
 
-} mrawImageSizes;
-
-typedef struct
+struct mrawIParams
 {
   char make[64];
   char model[64];
+};
 
-} mrawIParams;
-
-typedef struct
+struct mrawOParams
 {
   msclUInt greybox[4];
   double   aber[4];
@@ -211,10 +207,9 @@ typedef struct
   int      use_auto_wb;
   int      use_camera_wb;
   int      output_color;
+};
 
-} mrawOParams;
-
-typedef struct
+struct mrawProcessedImage
 {
   mrawImageFormats  type;
   msclUShort        height;
@@ -224,29 +219,26 @@ typedef struct
   msclUInt          data_size;
   msclUChar*        data;
   void*             mem_ptr; // memory to clear after using
+};
 
-} mrawProcessedImage;
-
-typedef struct
+struct mrawColorData
 {
   msclUInt  black;
   float     cam_mul[4];
   float     pre_mul[4];
   int       WB_Coeffs[256][4];
   float     WBCT_Coeffs[64][5];
+};
 
-} mrawColorData;
-
-typedef struct
+struct mrawImageOther
 {
   float  iso_speed;
   float  shutter;
   float  aperture;
   float  focal_len;
+};
 
-} mrawImageOther;
-
-typedef struct
+struct mrawThumbnail
 {
   mrawThumbnailFormats  tformat;
   msclUShort            twidth;
@@ -254,10 +246,9 @@ typedef struct
   msclUInt              tlength;
   int                   tcolors;
   char*                 thumb;
+};
 
-} mrawThumbnail;
-
-typedef struct
+struct mrawImageData
 {
  msclUInt           progress_flags;
  mrawImageSizes     sizes;
@@ -265,8 +256,100 @@ typedef struct
  mrawColorData      color;
  mrawImageOther     other;
  mrawThumbnail      thumbnail;
+};
 
-} mrawImageData;
+//[----------------------------------------------------------------------------]
+//[ TRACE part
+//[----------------------------------------------------------------------------]
+
+struct mtracePath;
+
+struct mtracePrivPath;
+struct mtracePrivState;
+
+enum mtraceTurnPolicy
+{
+    mttpBlack    = 0,
+    mttpWhite    = 1,
+    mttpLeft     = 2,
+    mttpRight    = 3,
+    mttpMinority = 4,
+    mttpMajority = 5,
+    mttpRandom   = 6
+
+};
+
+enum mtraceTag
+{
+    mttCurveTo   = 1,
+    mttCorner    = 2
+};
+
+enum mtraceStatus
+{
+    mtsOk         = 0,
+    mtsIncomplete = 1
+};
+
+struct mtraceBitmap
+{
+  int               w, h;
+  int               dy;
+  msclULong*        map;
+};
+
+struct mtracePoint
+{
+  double            x;
+  double            y;
+};
+
+struct mtraceCurve
+{
+  int               n;
+  int*              tag;
+  mtracePoint       (*c)[3];
+};
+
+struct mtracePath
+{
+  int               area;
+  int               sign;
+  mtraceCurve       curve;
+
+  mtracePath*       next;
+  mtracePath*       childlist;
+  mtracePath*       sibling;
+  mtracePrivPath*   priv;
+};
+
+struct mtraceState
+{
+  int               status;
+  mtracePath*       plist;
+  mtracePrivState*  priv;
+};
+
+using mtraceCallbackPtr = void (*)(double progress, void* privdata);
+
+struct mtraceProgress
+{
+  mtraceCallbackPtr callback;
+  void*             data;
+  double            min;
+  double            max;
+  double            epsilon;
+};
+
+struct mtraceParam
+{
+  int               turdsize;
+  int               turnpolicy; // mtraceTurnPolicy
+  double            alphamax;
+  int               opticurve;
+  double            opttolerance;
+  mtraceProgress    progress;
+};
 
 //[----------------------------------------------------------------------------]
 

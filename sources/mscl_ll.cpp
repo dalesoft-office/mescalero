@@ -1,6 +1,6 @@
 //[----------------------------------------------------------------------------]
 //[
-//[ Copyright 2022 DaleSoft (email: office@dalesoft.ru)
+//[ Copyright 2022-2024 DaleSoft (email: office@dalesoft.ru)
 //[
 //[ Licensed under the Apache License, Version 2.0 (the "License");
 //[ you may not use this file except in compliance with the License.
@@ -22,6 +22,7 @@
 //[
 //[ 13.10.22 /IB/ Created...
 //[ 23.10.22 /IB/ RAW part added
+//[ 18.01.24 /IB/ Potrace support was added
 //[
 //[----------------------------------------------------------------------------]
 
@@ -40,7 +41,9 @@ static msclPart msclParts[] = {
  {msclPartTypeICC, 2, 14, 0, "2.14.0",
   "LittleCMS", "LSMS license", "https://github.com/mm2/Little-CMS/blob/lcms2.14/COPYING"},
  {msclPartTypeRAW, LIBRAW_MAJOR_VERSION, LIBRAW_MINOR_VERSION, LIBRAW_PATCH_VERSION, "0.20.2",
-  "LibRAW", "LGPL 2.1", "https://github.com/LibRaw/LibRaw/blob/0.20-stable/LICENSE.LGPL"}
+  "LibRAW", "LGPL 2.1", "https://github.com/LibRaw/LibRaw/blob/0.20-stable/LICENSE.LGPL"},
+ {msclPartTypeTRACE, 1 /* POTRACE_MAJOR_VERSION */ , 16 /* POTRACE_MINOR_VERSION */ , 0 /* POTRACE_PATCH_VERSION */, "1.16.0",
+  "POTrace", "GPL 2+", "https://potrace.sourceforge.net/#license"}
 };
 
 //[----------------------------------------------------------------------------]

@@ -8,6 +8,7 @@ CONFIG += c++17
 win32-msvc:{
   ICCLibPath = $$PWD/libraries/lcms/win
   RAWLibPath = $$PWD/libraries/libraw/win
+  TRACELibPath = $$PWD/libraries/potrace/win
   LIBS += -llibraw
   
   #Static LibRaw defines
@@ -24,21 +25,23 @@ win32-msvc:{
 linux-g++:{
   ICCLibPath = $$PWD/libraries/lcms/linux
   RAWLibPath = $$PWD/libraries/libraw/linux
+  TRACELibPath = $$PWD/libraries/potrace/linux
   LIBS += -lraw
 
-  VERSION = 0.11.0
+  VERSION = 0.20.0
 }
 
-LIBS += -llcms2
+LIBS += -llcms2 -lpotrace
 
 INCLUDEPATH += $$PWD/interface
 
-QMAKE_LIBDIR += $$ICCLibPath $$RAWLibPath
+QMAKE_LIBDIR += $$ICCLibPath $$RAWLibPath $$TRACELibPath
 
 SOURCES += \
     $$PWD/sources/mscl_ll.cpp  \
     $$PWD/sources/mscl_icc_littlecms.cpp \
-    $$PWD/sources/mscl_raw_libraw.cpp
+    $$PWD/sources/mscl_raw_libraw.cpp \
+    $$PWD/sources/mscl_trace_potrace.cpp
 
 HEADERS += \
     $$PWD/libraries/lcms/lcms2.h \
@@ -49,6 +52,7 @@ HEADERS += \
     $$PWD/libraries/libraw/libraw_internal.h \
     $$PWD/libraries/libraw/libraw_types.h \
     $$PWD/libraries/libraw/libraw_version.h \
+    $$PWD/libraries/potrace/potracelib.h \
     $$PWD/proxies/lcms2_defines.h \
     $$PWD/proxies/lcms2.h \
     $$PWD/proxies/libraw_defines.h \

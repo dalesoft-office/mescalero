@@ -46,7 +46,7 @@ static const char* mrawFormats[] = {
  "3fr", "ari", "arw", "bay", "crw", "cr2", "cap", "dcs", "dcr", "dng", // 10
  "drf", "eip", "erf", "fff", "iiq", "k25", "kdc", "mdc", "mef", "mos", // 20
  "mrw", "nef", "nrw", "obm", "orf", "pef", "ptx", "pxn", "r3d", "raf", // 30
- "raw", "rwl", "rw2", "rwz", "sr2", "srf", "srw", "x3f", ""            // 38
+ "raw", "rwl", "rw2", "rwz", "sr2", "srf", "srw", "x3f", NULL          // 38
 };
 
 /* Not presented:
