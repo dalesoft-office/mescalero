@@ -22,18 +22,14 @@ http://www.apache.org/licenses/LICENSE-2.0<br>
 
 ## Project files
 
-mscl_ll.pro - QT 5 project (LittleCMS as ICC, LibRAW as RAW). No additional dll/so's are required<br>
+mscl_ll.pro - QT 5 project (LittleCMS as ICC, LibRAW as RAW, POTRACE as TRACE). No additional dll/so's are required<br>
 
 ## Releases files
 
-Mescalero v0.11 compiled binaries with includes w/o proxies:
+Mescalero compiled binaries w/o includes and proxies:
 
-- mscl011.zip - Windows 
-- mscl011.tar.gz - Linuxes (Ubuntu, Alt, ...)
-
-Mescalero v0.11 compiled binaries w/o includes and proxies:
-
-- mscl_alt_011.zip - Alt Linux (10.1+)
-- mscl_astra_011.zip - Astra Linux (1.7+)
-- mscl_red_011.zip - RED Linux (7.3+)
-- mscl_ubuntu_011.zip - Ubuntu (20.04+)
+- mscl_win.zip - Windows (64bit)
+- mscl_alt.zip - Alt Linux (10.1+)
+- mscl_astra.zip - Astra Linux (1.7+)
+- mscl_red.zip - RED Linux (7.3+)
+- mscl_ubuntu.zip - Ubuntu (20.04+)
