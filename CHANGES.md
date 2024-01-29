@@ -8,3 +8,4 @@ v0.8.0 - QT 5 project (LittleCMS as ICC, LibRAW with RawSpeed as RAW) no dynamic
 v0.9.0 - QT 5 project (LittleCMS as ICC, LibRAW w/o RawSpeed as RAW) no dynamic libs are required<br>
 v0.10.0 - Methods were grouped into classes<br>
 v0.11.0 - Interface changed, releases folder added
+v0.20.0 - Trace module was added, releases files renamed
