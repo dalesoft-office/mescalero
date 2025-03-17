@@ -143,8 +143,6 @@ enum miccColorSpaceSignature
 //[ RAW part
 //[----------------------------------------------------------------------------]
 
-#define mrawDataStreamMaxSize (300 * 1024L * 1024L)
-
 enum mrawProgress
 {
  mrawProgressStart   = 0,

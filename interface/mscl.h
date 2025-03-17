@@ -24,13 +24,14 @@
 //[ 24.11.22 /IB/ Methods were grouped into classes
 //[ 10.12.22 /IB/ New methods were added, format of some old ones changed
 //[ 18.01.24 /IB/ Trace methods were added
+//[ 16.03.25 /IB/ v0.21.0 getCameras method was added
 //[
 //[----------------------------------------------------------------------------]
 
 #ifndef MESCALERO_H
 #define MESCALERO_H
 
-#include <QtCore/qglobal.h>
+#include <QtCore/QtGlobal>
 
 #include <mscl_defines.h>
 
@@ -52,11 +53,11 @@
 #  endif
 #endif
 
-// Interface version 0.20.0
-#define MESCALERO_VER_STR "0.20.0"
-#define MESCALERO_VER_MAJOR 0
-#define MESCALERO_VER_MINOR 20
-#define MESCALERO_VER_PATCH 0
+// Interface version 0.21.0
+#define MESCALERO_VER_STR "0.21.0"
+#define MESCALERO_VER_MAJOR 0    // New API
+#define MESCALERO_VER_MINOR 21   // Additional methods
+#define MESCALERO_VER_PATCH 0    // Just patches
 
 //[----------------------------------------------------------------------------]
 //[ Common part
@@ -147,6 +148,7 @@ class MSCLAPI mrawClass
 
      // RAW files options
      static const char**  getFormats();
+     static const char**  getCameras(int& amount);
      static bool          isThumbnailSupported();
      static bool          isExtendedParamsSupported();
      static bool          isProgressHandlerSupported();

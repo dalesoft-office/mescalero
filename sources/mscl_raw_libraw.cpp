@@ -46,8 +46,16 @@ static const char* mrawFormats[] = {
  "3fr", "ari", "arw", "bay", "crw", "cr2", "cap", "dcs", "dcr", "dng", // 10
  "drf", "eip", "erf", "fff", "iiq", "k25", "kdc", "mdc", "mef", "mos", // 20
  "mrw", "nef", "nrw", "obm", "orf", "pef", "ptx", "pxn", "r3d", "raf", // 30
- "raw", "rwl", "rw2", "rwz", "sr2", "srf", "srw", "x3f", NULL          // 38
+ "raw", "rwl", "rw2", "rwz", "sr2", "srf", "srw",                      // 37
+ "x3f",                                                                // 38*
+ NULL
 };
+
+/* Notes:
+
+   If you want x3f format being supported, build libRaw with USE_X3FTOOLS defined
+
+*/
 
 /* Not presented:
 
@@ -61,6 +69,14 @@ static const char* mrawFormats[] = {
 const char** mrawClass::getFormats()
 {
  return mrawFormats;
+}
+
+//[----------------------------------------------------------------------------]
+
+const char** mrawClass::getCameras(int& amount)
+{
+    amount = libraw_cameraCount();
+    return libraw_cameraList();
 }
 
 //[----------------------------------------------------------------------------]
@@ -255,7 +271,7 @@ void mrawClass::getProcessorData()
 
 mrawErrors mrawClass::openFile(const MRAW_FNTYPE fname)
 {
- mrawErrors result = (mrawErrors)((LibRaw*) m_processor)->open_file(fname, mrawDataStreamMaxSize);
+ mrawErrors result = (mrawErrors)((LibRaw*) m_processor)->open_file(fname);
 
  getProcessorData();
  return result;
