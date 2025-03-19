@@ -51,10 +51,17 @@ static const char* mrawFormats[] = {
  NULL
 };
 
-/* Notes:
+/* To build LibRaw:
 
-   If you want x3f format being supported, build libRaw with USE_X3FTOOLS defined
+1. Use buildfiles/libraw.pro with:
 
+	CONFIG+=staticlib
+# If you want x3f format being supported, build libRaw with USE_X3FTOOLS defined
+	DEFINES+=LIBRAW_NODLL USE_X3FTOOLS USE_6BY9RPI
+
+2. Add a line to buildfiles/libraw-common-lib.pro 
+
+	OUTD=release # 'cause $$OUTD is not defined for linux
 */
 
 /* Not presented:
