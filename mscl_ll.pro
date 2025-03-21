@@ -28,7 +28,7 @@ linux-g++:{
   TRACELibPath = $$PWD/libraries/potrace/linux
   LIBS += -lraw
 
-  VERSION = 0.20.0
+  VERSION = 0.21.0
 }
 
 LIBS += -llcms2 -lpotrace
