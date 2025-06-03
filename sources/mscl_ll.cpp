@@ -38,8 +38,8 @@ static msclPart msclParts[] = {
 
  {msclPartTypeMSCL, MESCALERO_VER_MAJOR, MESCALERO_VER_MINOR, MESCALERO_VER_PATCH, MESCALERO_VER_STR,
   "Mescalero",  "Apache 2.0", "http://www.apache.org/licenses/LICENSE-2.0"},
- {msclPartTypeICC, 2, 14, 0, "2.14.0",
-  "LittleCMS", "LSMS license", "https://github.com/mm2/Little-CMS/blob/lcms2.14/COPYING"},
+ {msclPartTypeICC, 2, 17, 0, "2.17.0",
+  "LittleCMS", "MIT license", "https://github.com/mm2/Little-CMS/blob/lcms2.17/LICENSE"},
  {msclPartTypeRAW, LIBRAW_MAJOR_VERSION, LIBRAW_MINOR_VERSION, LIBRAW_PATCH_VERSION, "0.22.0",
   "LibRAW", "LGPL 2.1", "https://github.com/LibRaw/LibRaw/blob/master/LICENSE.LGPL"},
  {msclPartTypeTRACE, 1 /* POTRACE_MAJOR_VERSION */ , 16 /* POTRACE_MINOR_VERSION */ , 0 /* POTRACE_PATCH_VERSION */, "1.16.0",

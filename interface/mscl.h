@@ -25,6 +25,7 @@
 //[ 10.12.22 /IB/ New methods were added, format of some old ones changed
 //[ 18.01.24 /IB/ Trace methods were added
 //[ 16.03.25 /IB/ v0.21.0 getCameras method was added
+//[ 03.07.25 /IB/ v0.22.0 from lcms2 2.14 to 2.17
 //[
 //[----------------------------------------------------------------------------]
 
@@ -53,10 +54,10 @@
 #  endif
 #endif
 
-// Interface version 0.21.0
-#define MESCALERO_VER_STR "0.21.0"
+// Interface version 0.22.0
+#define MESCALERO_VER_STR "0.22.0"
 #define MESCALERO_VER_MAJOR 0    // New API
-#define MESCALERO_VER_MINOR 21   // Additional methods
+#define MESCALERO_VER_MINOR 22   // Additional methods
 #define MESCALERO_VER_PATCH 0    // Just patches
 
 //[----------------------------------------------------------------------------]

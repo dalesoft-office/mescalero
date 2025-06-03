@@ -33,3 +33,4 @@ Mescalero compiled binaries w/o includes and proxies:
 - mscl_astra.zip - Astra Linux (1.7+)
 - mscl_red.zip - RED Linux (7.3+)
 - mscl_ubuntu.zip - Ubuntu (20.04+)
+- mscl_macos.zip - MacOS (64bit)

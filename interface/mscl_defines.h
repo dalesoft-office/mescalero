@@ -136,7 +136,9 @@ enum miccColorSpaceSignature
  miccSig13colorData  = 0x44434C52,  // 'DCLR'
  miccSig14colorData  = 0x45434C52,  // 'ECLR'
  miccSig15colorData  = 0x46434C52,  // 'FCLR'
- miccSigLuvKData     = 0x4C75764B   // 'LuvK'
+ miccSigLuvKData     = 0x4C75764B,  // 'LuvK'
+ miccSigMHC2Data     = 0x4D484332   // 'MHC2'
+
 };
 
 //[----------------------------------------------------------------------------]

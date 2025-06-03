@@ -10,3 +10,4 @@ v0.10.0 - Methods were grouped into classes<br>
 v0.11.0 - Interface changed, releases folder added<br>
 v0.20.0 - Trace module was added, releases files renamed
 v0.21.0 - LibRAW changed (from v0.20.2 to v0.22.0), method mrawClass::getCameras and file "version" were added
+v0.22.0 - LittleCMS changed (from v2.14 to v2.17), MacOS version added
