@@ -4,6 +4,7 @@ TEMPLATE = lib
 TARGET = mscl
 DEFINES += MESCALERO_LIBRARY
 CONFIG += c++17
+VERSION = 0.21.0
 
 win32-msvc:{
   ICCLibPath = $$PWD/libraries/lcms/win
@@ -27,8 +28,13 @@ linux-g++:{
   RAWLibPath = $$PWD/libraries/libraw/linux
   TRACELibPath = $$PWD/libraries/potrace/linux
   LIBS += -lraw
+}
 
-  VERSION = 0.21.0
+macx:{
+  ICCLibPath = $$PWD/libraries/lcms/macos
+  RAWLibPath = $$PWD/libraries/libraw/macos
+  TRACELibPath = $$PWD/libraries/potrace/macos
+  LIBS += -llibraw
 }
 
 LIBS += -llcms2 -lpotrace
