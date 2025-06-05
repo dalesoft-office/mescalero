@@ -4,7 +4,7 @@ TEMPLATE = lib
 TARGET = mscl
 DEFINES += MESCALERO_LIBRARY
 CONFIG += c++17
-VERSION = 0.21.0
+VERSION = 0.22.0
 
 win32-msvc:{
   ICCLibPath = $$PWD/libraries/lcms/win
