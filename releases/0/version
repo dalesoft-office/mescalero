@@ -12,3 +12,8 @@
 # 1. Your software uses mescalero version 0.18.0, so major is "0".
 # 2. Look at the /releases/0/version that says "0.21.0". It's newer
 # 3. Download /releases/0/mscl_*.zip, unzip and check SHA256 hash with files.sha256sum
+
+# 0.22 - macos
+# 0.21 - the rest
+#
+#

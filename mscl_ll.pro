@@ -6,7 +6,7 @@ DEFINES += MESCALERO_LIBRARY
 CONFIG += c++17
 VERSION = 0.22.0
 
-win32-msvc:{
+win32-msvc {
   ICCLibPath = $$PWD/libraries/lcms/win
   RAWLibPath = $$PWD/libraries/libraw/win
   TRACELibPath = $$PWD/libraries/potrace/win
@@ -23,18 +23,23 @@ win32-msvc:{
   QMAKE_LFLAGS += /ignore:4286
 }
 
-linux-g++:{
+linux-g++ {
   ICCLibPath = $$PWD/libraries/lcms/linux
   RAWLibPath = $$PWD/libraries/libraw/linux
   TRACELibPath = $$PWD/libraries/potrace/linux
   LIBS += -lraw
 }
 
-macx:{
+macx-clang {
   ICCLibPath = $$PWD/libraries/lcms/macos
   RAWLibPath = $$PWD/libraries/libraw/macos
   TRACELibPath = $$PWD/libraries/potrace/macos
   LIBS += -llibraw
+
+  build_platform = macosx
+
+  QMAKE_APPLE_DEVICE_ARCHS=arm64
+  QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.12
 }
 
 LIBS += -llcms2 -lpotrace
@@ -65,5 +70,3 @@ HEADERS += \
     $$PWD/proxies/libraw.h \
     $$PWD/interface/mscl_defines.h \
     $$PWD/interface/mscl.h
-
-
